@@ -18,6 +18,7 @@ public class StatRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     private static final String STAT_QUERY =
+            "select app, uri, hits from (" +
             "select a.name as app, h.uri as uri, count(%s) as hits " +
             "  from hits h " +
             "  join applications a on a.id = h.app_id " +
@@ -26,6 +27,8 @@ public class StatRepository {
     private static final String COUNT_UNIQUE = "distinct ip";
     private static final String COUNT_ALL = "*";
     private static final String GROUP_BY = " group by a.name, h.uri";
+
+    private static final String ORDER_BY = ") order by hits desc";
 
     private static final BeanPropertyRowMapper<Statistics> rowMapper = new BeanPropertyRowMapper<>(Statistics.class);
 
@@ -41,7 +44,7 @@ public class StatRepository {
         }
 
         final String count = unique ? COUNT_UNIQUE : COUNT_ALL;
-        String query = String.format(useUris ? STAT_QUERY_URI : STAT_QUERY, count) + GROUP_BY;
+        String query = String.format(useUris ? STAT_QUERY_URI : STAT_QUERY, count) + GROUP_BY + ORDER_BY;
 
         return jdbcTemplate.query(query, params, rowMapper);
     }
