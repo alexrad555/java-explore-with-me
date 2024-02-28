@@ -5,7 +5,7 @@ services:
     image: stats-server:1.0
     container_name: stats-server
     ports:
-      - "8085:8085"
+      - "9090:9090"
     depends_on:
       - stats-db
     environment:
