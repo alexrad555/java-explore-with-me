@@ -68,7 +68,7 @@ public class EventService {
     public EventFullDto update(Long eventId, Long userId, UpdateEventUserRequest updateRequest) {
         if (updateRequest.getStateAction() != null
                 && updateRequest.getStateAction() != EventAction.SEND_TO_REVIEW
-                && updateRequest.getStateAction() != EventAction.CANCEL_REVIEW) {;
+                && updateRequest.getStateAction() != EventAction.CANCEL_REVIEW) {
             throw new InvalidEventActionException("некорректное действие");
         }
         Event event = findEventById(eventId);

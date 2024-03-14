@@ -16,7 +16,9 @@ public interface EventMapper {
     @Mapping(target = "participantLimit", source = "participantLimit", defaultValue = "0")
     @Mapping(target = "requestModeration", source = "requestModeration", defaultValue = "true")
     Event toEvent(NewEventDto newEventDto);
+
     UpdateEventRequest toRequest(UpdateEventAdminRequest adminRequest);
+
     UpdateEventRequest toRequest(UpdateEventUserRequest userRequest);
 
     @Mapping(target = "initiator", source = "user")

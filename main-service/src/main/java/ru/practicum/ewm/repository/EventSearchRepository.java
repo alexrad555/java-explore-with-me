@@ -161,7 +161,7 @@ public class EventSearchRepository {
                 rs.getBigDecimal("lon"));
 
         Timestamp timestamp = rs.getTimestamp("publish_date");
-        LocalDateTime publishDate = timestamp ==null ? null : timestamp.toLocalDateTime();
+        LocalDateTime publishDate = timestamp == null ? null : timestamp.toLocalDateTime();
 
         return new EventFullDto(category,
                 rs.getString("annotation"),
