@@ -35,7 +35,7 @@ public class PublicEventController {
                                        @RequestParam(required = false, defaultValue = "0") int from,
                                        @RequestParam(required = false, defaultValue = "10") int size,
                                        HttpServletRequest request) {
-
+        statClient.createHit(request);
         EventSearchParam eventSearchParam = new EventSearchParam(text, categories, paid, rangeStart, rangeEnd,
                 onlyAvailable, sort, from, size, true);
 
