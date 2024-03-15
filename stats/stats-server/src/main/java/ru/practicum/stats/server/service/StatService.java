@@ -8,6 +8,7 @@ import ru.practicum.stats.server.dao.HitRepository;
 import ru.practicum.stats.server.dao.StatRepository;
 import ru.practicum.stats.server.entity.Application;
 import ru.practicum.stats.server.entity.Hit;
+import ru.practicum.stats.server.exception.ValidationException;
 import ru.practicum.stats.server.report.Statistics;
 
 import java.time.LocalDateTime;
@@ -27,6 +28,9 @@ public class StatService {
     private static final Map<String, Application> APPLICATION_CACHE = new HashMap<>();
 
     public List<Statistics> getStatistics(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
+        if (start != null && end != null && start.isAfter(end)) {
+            throw new ValidationException("Время начало позже времини окончания");
+        }
         return statRepository.findAll(start, end, uris, unique);
     }
 
