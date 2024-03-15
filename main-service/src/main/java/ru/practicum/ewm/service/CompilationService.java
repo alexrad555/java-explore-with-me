@@ -36,7 +36,7 @@ public class CompilationService {
         if (compilationDto.getEvents() != null) {
             compilation.setEvents(eventService.findAll(compilationDto.getEvents()));
         } else {
-            compilation.setEvents(Collections.EMPTY_LIST);
+            compilation.setEvents(Collections.emptyList());
         }
         compilationRepository.save(compilation);
         return compilationToDto(compilation);

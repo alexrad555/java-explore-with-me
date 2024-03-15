@@ -67,7 +67,7 @@ public class StatClient {
         } catch (Exception e) {
             log.error("ошибка при получении статистики " + e.getMessage(), e);
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
 
