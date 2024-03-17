@@ -55,6 +55,7 @@ public class CommentService {
     }
 
     public List<Comment> findAllByAuthorId(Long authorId, String sort, int from, int size) {
+        userService.findById(authorId);
         Sort.Direction direction = Sort.Direction.fromOptionalString(sort).orElse(Sort.Direction.DESC);
         Pageable pageable = new OffsetPageable(from, size, Sort.by(direction, "createDate"));
         return commentRepository.findAllByAuthorId(authorId, pageable).toList();
