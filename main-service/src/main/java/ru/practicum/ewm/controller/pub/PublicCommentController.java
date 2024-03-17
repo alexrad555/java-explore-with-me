@@ -17,6 +17,7 @@ public class PublicCommentController {
     private final CommentService commentService;
     private final CommentMapper commentMapper;
 
+    @GetMapping
     public List<CommentShortDto> findAllPublishedByEventId(@PathVariable Long eventId,
                                                            @RequestParam(required = false) String sort,
                                                            @RequestParam(required = false, defaultValue = "0") int from,
