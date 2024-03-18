@@ -19,19 +19,19 @@ public class ParticipationRequestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ParticipationRequestDto createRequest(@PathVariable Long userId,
+    public ParticipationRequestDto createRequest(@PathVariable Long userId,
                                           @RequestParam Long eventId) {
         return requestMapper.toDto(participationRequestService.createRequest(userId, eventId));
     }
 
     @PatchMapping("/{requestId}/cancel")
-    ParticipationRequestDto cancelRequest(@PathVariable Long userId,
+    public ParticipationRequestDto cancelRequest(@PathVariable Long userId,
                                           @PathVariable Long requestId) {
         return requestMapper.toDto(participationRequestService.cancelRequest(userId, requestId));
     }
 
     @GetMapping
-    List<ParticipationRequestDto> findAllByUserId(@PathVariable Long userId) {
+    public List<ParticipationRequestDto> findAllByUserId(@PathVariable Long userId) {
         return requestMapper.toDto(participationRequestService.findAllByUserId(userId));
     }
 }
